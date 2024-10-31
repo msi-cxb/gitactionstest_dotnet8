@@ -1,0 +1,40 @@
+name: Validation of Console App
+on:
+  pull_request:
+    branches: [ main, develop, release/*, hotfix/* ]
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+jobs:
+  run-selected-unittests:
+    runs-on: windows-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+    name: Run MSBuild and VSTest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        id: checkout_code
+            
+      - name: Setup MSBuild and add to PATH
+        uses: microsoft/setup-msbuild@v2
+        id: setup_msbuild
+              
+      - name: Run MSBuild
+        id: run_msbuild
+        run: |
+          msbuild .\gitactionstest.sln  /t:clean /p:Configuration=Debug
+          nuget restore .\gitactionstest.sln
+          msbuild .\gitactionstest.sln  /t:build /p:Configuration=Debug
+
+      - name: Run VSTests
+        id: setup_vstest
+        uses: josepho0918/vstest-action@main
+        # uses: rusty-bender/vstest-action@main
+        # uses: danpetitt/vstest-action@main
+        with:
+          testAssembly: '**\\UnitTests.dll'
+          searchFolder: .\UnitTests\bin\Debug\
+          runInParallel: true
