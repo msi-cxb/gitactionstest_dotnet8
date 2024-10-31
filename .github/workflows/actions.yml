@@ -35,6 +35,6 @@ jobs:
         # uses: rusty-bender/vstest-action@main
         # uses: danpetitt/vstest-action@main
         with:
-          testAssembly: '**\\UnitTests.dll'
-          searchFolder: .\UnitTests\bin\Debug\
+          testAssembly: '**\\UnitTest*.dll'
+          searchFolder: .\UnitTests\bin\Debug\net8.0
           runInParallel: true
