@@ -36,5 +36,5 @@ jobs:
         # uses: danpetitt/vstest-action@main
         with:
           testAssembly: '**\\UnitTest*.dll'
-          searchFolder: .\UnitTests\bin\Debug\net8.0
+          searchFolder: .\UnitTest\bin\Debug\net8.0
           runInParallel: true
