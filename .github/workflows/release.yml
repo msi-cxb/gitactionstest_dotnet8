@@ -28,17 +28,18 @@ jobs:
             nuget restore .\gitactionstest_dotnet8.sln
             msbuild .\gitactionstest_dotnet8.sln -t:build /p:Configuration=Release
             msbuild .\gitactionstest_dotnet8.sln -t:publish /p:Configuration=Release
-            git archive --format=zip --output=gitactionstest_dotnet8.zip src/
-            ls -lar >> Release.txt
+            git archive --format=zip --output=./gitactionstest_dotnet8.zip ./bin/Release/net8.0/publish
 
         - name: result
           id: result
           run: |
-            dir /s /b
+            dir /s /b bin
 
         - name: release
           uses: softprops/action-gh-release@v2
           if: startsWith(github.ref, 'refs/tags/')
           with:
-            files: Release.txt
+            files: |
+              Release.txt
+              gitactionstest_dotnet8.zip
 
