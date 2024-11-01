@@ -28,6 +28,10 @@ jobs:
             nuget restore .\gitactionstest_dotnet8.sln
             msbuild .\gitactionstest_dotnet8.sln -t:build /p:Configuration=Release
             msbuild .\gitactionstest_dotnet8.sln -t:publish /p:Configuration=Release
+            
+        - shell: cmd
+          id: cmd
+          run: |
             dir /s /b 
 
         # - name: result
