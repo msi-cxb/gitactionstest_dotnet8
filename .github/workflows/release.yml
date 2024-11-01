@@ -29,8 +29,8 @@ jobs:
         - shell: cmd
           id: cmd
           run: |
-            dir /s /b 
             7z a gitactionstest_dotnet8.zip .\bin\Release\net8.0\publish\*
+            dir /s /b 
 
         - name: release
           uses: softprops/action-gh-release@v2
