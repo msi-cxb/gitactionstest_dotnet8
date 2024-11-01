@@ -27,9 +27,7 @@ jobs:
       - name: Run MSBuild
         id: run_msbuild
         run: |
-          msbuild .\gitactionstest_dotnet8.sln  /t:clean /p:Configuration=Debug
-          nuget restore .\gitactionstest_dotnet8.sln
-          msbuild .\gitactionstest_dotnet8.sln  /t:build /p:Configuration=Debug
+          msbuild .\gitactionstest_dotnet8.sln  /t:clean,build -restore /p:Configuration=Debug
 
       - name: Run VSTests
         id: setup_vstest
