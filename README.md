@@ -4,6 +4,6 @@
 # To publish using msbuild #
 
 ```
-msbuild .\gitactionstest_dotnet8.sln -t:clean,build,publish /p:Configuration=Release /p:PublishProfile=FolderPublish
+msbuild .\gitactionstest_dotnet8.sln -t:clean,build,publish /p:Configuration=Release
 ```
 
