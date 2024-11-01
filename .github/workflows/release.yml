@@ -20,7 +20,7 @@ jobs:
           id: setup_msbuild
           uses: microsoft/setup-msbuild@v2
                 
-        - name: Run MSBuild
+        - name: run_msbuild
           id: run_msbuild
           run: |
             echo ${{ github.sha }} > Release.txt
@@ -31,7 +31,12 @@ jobs:
             git archive --format=zip --output=gitactionstest_dotnet8.zip src/
             ls -lar >> Release.txt
 
-        - name: Release
+        - name: result
+          id: result
+          run: |
+            dir /s /b
+
+        - name: release
           uses: softprops/action-gh-release@v2
           if: startsWith(github.ref, 'refs/tags/')
           with:
