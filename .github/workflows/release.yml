@@ -24,10 +24,7 @@ jobs:
           id: run_msbuild
           run: |
             echo ${{ github.sha }} > Release.txt
-            msbuild .\gitactionstest_dotnet8.sln -t:clean /p:Configuration=Release
-            nuget restore .\gitactionstest_dotnet8.sln
-            msbuild .\gitactionstest_dotnet8.sln -t:build /p:Configuration=Release
-            msbuild .\gitactionstest_dotnet8.sln -t:publish /p:Configuration=Release
+            msbuild .\gitactionstest_dotnet8.sln -t:clean,build,publish -restore /p:Configuration=Release
             
         - shell: cmd
           id: cmd
