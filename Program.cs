@@ -12,10 +12,10 @@ namespace gitactionstest_dotnet8
         {
             foreach (string caseWorker in Enum.GetNames(typeof(Cases.CaseWorkers)))
             {
-                Console.WriteLine("Case Worker: " + caseWorker + " (" + ((int)Enum.Parse(typeof(Cases.CaseWorkers), caseWorker)).ToString() + ")");
+                Console.WriteLine($"Case Worker: {caseWorker} ({(int)Enum.Parse(typeof(Cases.CaseWorkers), caseWorker)})");
             }
             Console.WriteLine("press any key...");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }
