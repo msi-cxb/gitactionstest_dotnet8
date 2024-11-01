@@ -30,11 +30,7 @@ jobs:
           id: cmd
           run: |
             dir /s /b 
-
-        # - name: result
-        #   id: result
-        #   run: |
-        #     git archive --format=zip --output=./gitactionstest_dotnet8.zip ./bin/Release/net8.0/publish
+            7z a gitactionstest_dotnet8.zip .\bin\Release\net8.0\publish\*
 
         - name: release
           uses: softprops/action-gh-release@v2
@@ -42,4 +38,5 @@ jobs:
           with:
             files: |
               Release.txt
+              gitactionstest_dotnet8.zip
 
