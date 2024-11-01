@@ -1,5 +1,7 @@
-name: Validation of Console App
+name: CI
 on:
+  push:
+    branches: [ main, develop, release/*, hotfix/* ]
   pull_request:
     branches: [ main, develop, release/*, hotfix/* ]
     
